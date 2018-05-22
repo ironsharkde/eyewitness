@@ -1,0 +1,55 @@
+{
+  "name": "eyewitness",
+  "version": "0.0.2",
+  "description": "observe the accessibility of web systems",
+  "main": "lib/index.js",
+  "scripts": {
+    "postinstall": "mkdir -p data",
+    "build": "rm -rf lib && babel src/backend -d lib && npm run build:web",
+    "build:web": "webpack --debug",
+    "start": "npm run build && npm run doc && node lib/index.js",
+    "startDb": "mongod --dbpath=./data --port 27017",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "rm -rf public/doc && node node_modules/apidoc/bin/apidoc -i src/ -o public/doc/",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "start": "src/**/*.js"
+  },
+  "author": "Toni Feistauer <feistauer@ironshark.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "apidoc": "^0.17.6",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "npm-watch": "^0.3.0",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "chartist": "^0.11.0",
+    "dotenv": "^5.0.1",
+    "dotenv-webpack": "^1.5.5",
+    "express": "^4.16.3",
+    "lodash": "^4.17.5",
+    "mongodb": "^3.0.5",
+    "normalize.css": "^8.0.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "request": "^2.85.0"
+  },
+  "apidoc": {
+    "name": "Eyewitness API",
+    "version": "1.0.0",
+    "title": "Eyewitness api documentation",
+    "url": "https://eyewitness.isdev.de/api/v1"
+  }
+}

@@ -1,0 +1,380 @@
+.websites {
+  padding: 0 10px;
+  margin: 0 auto 40px;
+  max-width: 900px;
+}
+
+@media (min-width: 768px) {
+  .websites {
+    padding: 0 20px;
+  }
+}
+
+.websites__toolbar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 480px) {
+  .websites__toolbar {
+    flex-wrap: nowrap;
+  }
+}
+
+.websites__toolbar-buttons {
+  margin-top: 10px;
+}
+
+@media (min-width: 480px) {
+  .websites__toolbar-buttons {
+    margin-top: 0;
+  }
+}
+
+.websites__toolbar-search {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .websites__toolbar-search {
+    width: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .websites__toolbar-search {
+    width: 400px;
+  }
+}
+
+.websites__toolbar-add {
+  background: #00718a;
+  color: white;
+  margin-right: 10px;
+}
+
+.websites__toolbar-reload {
+  margin-right: 10px;
+}
+
+.websites__toolbar-button-image {
+  width: 16px;
+  vertical-align: middle;
+}
+
+.add-website {
+  margin: 10px 0;
+  padding: 10px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(31, 38, 44, 0.1);
+}
+
+.add-website__headline {
+  margin: 0 0 5px;
+  font-size: 0.9rem;
+}
+
+.add-website__input {
+  margin: 0 10px 0 0;
+  width: 85px;
+}
+
+@media (min-width: 480px) {
+  .add-website__input {
+    width: 220px;
+  }
+}
+
+@media (min-width: 768px) {
+  .add-website__input {
+    width: 300px;
+  }
+}
+
+.add-website__submit {
+  background: #37a214;
+  color: white;
+  margin-right: 10px;
+}
+
+.websites__list {
+  padding: 0;
+  margin: 0;
+}
+
+.websites__list li {
+  list-style: none;
+}
+
+.websites__list-empty {
+  margin: 10px 0;
+  padding: 20px 0;
+  text-align: center;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(31, 38, 44, 0.1);
+}
+
+.websites__list-empty p {
+  margin-top: 0;
+}
+
+.websites__list-empty-add-button {
+  background: #00718a;
+  color: white;
+}
+
+.website {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 25px auto;
+  grid-gap: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(31, 38, 44, 0.1);
+}
+
+.websites--small .website {
+  margin: 1px 0;
+  border-radius: 0;
+  grid-template-rows: 20px;
+}
+
+.websites--small .website:first-child {
+  margin-top: 10px;
+  border-radius: 3px 3px 0 0;
+}
+
+.websites--small .website:last-child {
+  border-radius: 0 0 3px 3px;
+}
+
+@media (min-width: 768px) {
+  .website {
+    grid-template-columns: auto 400px;
+  }
+
+  .websites--small .website {
+    grid-template-columns: auto 320px;
+  }
+}
+
+.website--live {
+  border-left: 5px solid #37a214;
+}
+
+.website--down {
+  border: 1px solid rgba(190, 27, 27, 0.35);
+  border-left: 5px solid #be1b1b;
+  background: rgb(255, 247, 247);
+}
+
+.websites--small .website--down {
+  border-width: 0 0 0 5px;
+}
+
+.website--nodata {
+  border: none;
+  border-left: 5px solid rgba(31, 38, 44, 0.1);
+  background: white;
+}
+
+.website__headline {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: calc(100vw - 50px);
+}
+
+@media (min-width: 480px) {
+  .website__headline {
+    font-size: 1.1rem;
+  }
+}
+
+.website__info {
+  grid-column: 1/1;
+  grid-row: 2/2;
+  font-size: 0.85rem;
+  max-width: 100%;
+}
+
+.websites--small .website__info {
+  display: none;
+}
+
+.website__status {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 3px 5px;
+  margin: 0 10px;
+  color: white;
+  font-family: monospace;
+  font-size: 0.8rem;
+  border-radius: 10px;
+}
+
+.website__icon {
+  font-size: 0.8rem;
+  margin: 0 5px 0 0;
+}
+
+.website--live .website__status {
+  background: rgba(55, 162, 20, 0.2);
+  color: #37a214;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.website--down .website__status {
+  background: rgb(190, 27, 27, 0.2);
+  color: #be1b1b;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.website__stats {
+  font-size: 0.65rem;
+  font-weight: 300;
+  line-height: 1.33;
+}
+
+.website__stat--live {
+  color: #37a214;
+}
+
+.website__stat--spikes {
+  color: #d1ae12;
+}
+
+.website__stat--down {
+  color: #be1b1b;
+}
+
+/* Charts */
+.website__charts {
+  grid-column: 1/-1;
+  grid-row: 3/3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .website__charts {
+    grid-column: 2/-1;
+    grid-row: 1/-1;
+    justify-content: flex-end;
+  }
+}
+
+.website__chart {
+  width: 220px;
+  height: 50px;
+}
+
+.websites--small .website__chart {
+  height: 30px;
+}
+
+@media (min-width: 480px) {
+  .website__chart {
+    width: 330px;
+    height: 75px;
+  }
+
+  .websites--small .website__chart {
+    width: 250px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .website__chart {
+    width: 330px;
+    height: 100px;
+  }
+
+  .websites--small .website__chart {
+    height: 30px;
+  }
+}
+
+.website__uptime {
+  width: 30px;
+  height: 30px;
+}
+
+.websites--small .website__uptime {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+@media (min-width: 480px) {
+  .website__uptime {
+    width: 45px;
+    height: 45px;
+  }
+
+  .websites--small .website__uptime {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .website__uptime {
+    width: 50px;
+    height: 50px;
+  }
+  .websites--small .website__uptime {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.websites .ct-grid {
+  stroke: rgba(31, 38, 44, 0.1);
+  stroke-width: 1px;
+  stroke-dasharray: 0;
+}
+
+.website .ct-bar {
+  stroke-width: 2px;
+}
+
+.websites .ct-series-a .ct-bar {
+  stroke: #37a214;
+}
+
+.websites .ct-series-b .ct-bar {
+  stroke: #be1b1b;
+}
+
+.websites .ct-series-c .ct-bar {
+  stroke: #d1ae12;
+}
+
+.websites .ct-label {
+  font-size: 0.65rem;
+  color: rgba(31, 38, 44, 0.2);
+}
+
+.websites .ct-series-a .ct-slice-donut-solid {
+  fill: #37a214;
+}
+
+.websites .ct-series-b .ct-slice-donut-solid {
+  fill: #d1ae12;
+}
+
+.websites .ct-series-c .ct-slice-donut-solid {
+  fill: #be1b1b;
+}

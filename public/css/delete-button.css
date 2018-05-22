@@ -1,0 +1,12 @@
+.delete-button {
+  margin: 10px 10px 0 0;
+}
+
+.delete-button--confirm {
+  background: #be1b1b;
+  color: #fff;
+}
+
+.delete-button-confirm {
+  margin: 0 10px 0 0;
+}
