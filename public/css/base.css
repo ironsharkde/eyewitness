@@ -1,0 +1,55 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(31, 38, 44, .8);
+  background: rgba(31, 38, 44, .05);
+}
+
+a,
+a:link,
+a:visited {
+  color: #00718a;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #00718a;
+  text-decoration: underline;
+}
+
+button,
+a.button,
+a:link.button,
+a:visited.button,
+a:hover.button,
+a:focus.button,
+a:active.button   {
+  display: inline-block;
+  padding: 9px 15px;
+  line-height: 1.3;
+  background: transparent;
+  color: rgba(31, 38, 44, .8);
+  border: 1px solid rgba(31, 38, 44, .15);
+  border-radius: 3px;
+  font-size: .85rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input[type="search"],
+input[type="url"],
+input[type="text"] {
+  padding: 0 15px;
+  line-height: 35px;
+  background: white;
+  color: rgba(31, 38, 44, .8);
+  border: 1px solid rgba(31, 38, 44, .15);
+  border-radius: 3px;
+  font-size: .85rem;
+}
+
+input:disabled {
+  background: rgba(31, 38, 44, .025);
+  border: 1px solid rgba(31, 38, 44, .15);
+}
