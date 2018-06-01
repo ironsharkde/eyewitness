@@ -13,14 +13,19 @@ const auth = {
 export default class Websites extends React.Component {
   constructor(props) {
     super(props)
+
+    const view = localStorage.getItem('view') || 'large'
+
     this.state = {
       loading: true,
       websites: null,
       websitesFiltered: [],
       showAddDialog: false,
       query: '',
-      view: 'large'
+      view
     }
+
+    localStorage.setItem('view', view)
 
     this.filter = this.filter.bind(this)
     this.fetchWebsites = this.fetchWebsites.bind(this)
@@ -106,10 +111,12 @@ export default class Websites extends React.Component {
       this.setState({
         view: 'large'
       })
+      localStorage.setItem('view', 'large')
     } else {
       this.setState({
         view: 'small'
       })
+      localStorage.setItem('view', 'small')
     }
   }
 
