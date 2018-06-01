@@ -44,7 +44,8 @@
     "normalize.css": "^8.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "slackbots": "^1.1.0"
   },
   "apidoc": {
     "name": "Eyewitness API",

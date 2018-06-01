@@ -15,6 +15,8 @@ import {
 import { getUrls, addUrl, deleteUrl } from './data/urls'
 import { getClients, addClient, deleteClient } from './data/clients'
 
+import initSlackBot from './witness/slack'
+
 const port = process.env.JPR_PORT || 4321
 const app = express()
 
@@ -343,3 +345,6 @@ async function updateSiteInfo() {
   setTimeout(updateSiteInfo, config.density)
 }
 updateSiteInfo()
+
+// START SLACKBOT
+initSlackBot()
