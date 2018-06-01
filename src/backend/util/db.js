@@ -25,7 +25,7 @@ export function connect(action) {
   })
 }
 
-export const prepareStampQuery = ({ from, to, fromOffset }) => {
+export const prepareStampQuery = ({ from, to, fromOffset } = {}) => {
   let query = {}
   if (to) {
     query.stamp = {
