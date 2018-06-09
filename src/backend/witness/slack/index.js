@@ -2,9 +2,6 @@ import SlackBot from 'slackbots'
 import { get } from 'lodash'
 
 import { slackToken as token } from '../../config'
-import { getAverage } from '../../util/average'
-import { getUrls } from '../../data/urls'
-import { getMultipleSiteInfo } from '../../data/siteInfo'
 
 import { defaultParams, commandPrefix } from './config'
 import helpCommand from './commands/help'
