@@ -56,9 +56,9 @@ export default async function detailsCommand({ parts: [cmd, ...pageIds], bot, ch
     const uptimeEntries = site.data.length - downtimeEntries - spikesEntries
 
     const uptimeMetrik = {
-      live: uptimeEntries / site.data.length * 100.0,
-      spikes: spikesEntries / site.data.length * 100.0,
-      down: downtimeEntries / site.data.length * 100.0
+      live: (uptimeEntries / site.data.length) * 100.0,
+      spikes: (spikesEntries / site.data.length) * 100.0,
+      down: (downtimeEntries / site.data.length) * 100.0
     }
 
     const lines = [
@@ -66,19 +66,17 @@ export default async function detailsCommand({ parts: [cmd, ...pageIds], bot, ch
         live ? 'STATUS:' : 'ERROR:'
       } ${status || error || 'n/a'}\``,
       '> ',
-      '> *Average availability (last 24h):*',
       '> ```',
+      'Ø Availability (last 24h):',
       `live:      ${uptimeMetrik.live.toFixed(2)}%`,
       `spikes:    ${uptimeMetrik.spikes.toFixed(2)}%`,
       `down:      ${uptimeMetrik.down.toFixed(2)}%`,
-      '```',
-      '> *Average timing (last 24h):*',
-      '> ```',
+      '',
+      'Ø Timing (last 24h):',
       `tcp:       ${Math.round(averageTiming.tcp)}ms`,
       `firstByte: ${Math.round(averageTiming.firstByte)}ms`,
       `total:     ${Math.round(averageTiming.total)}ms`,
-      '```',
-      ''
+      '```'
     ]
 
     return lines.join('\n')

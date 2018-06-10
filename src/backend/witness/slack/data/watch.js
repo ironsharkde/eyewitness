@@ -1,14 +1,26 @@
-/* import { connect } from '../../../util/db'
+import { uniq } from 'lodash'
+import { connect } from '../../../util/db'
 
-export const addWatcher = channel =>
+const collectionName = 'slack-watchers'
+
+export const addWatcher = (channel, watchingOn) =>
   connect(async db => {
-    const collection = db.collection('slackWatcher')
-    const item = { channel: String(token).trim(), name: String(name).trim() }
-    const items = await collection.find(item).toArray()
+    const collection = db.collection(collectionName)
+    let item = { channel, watchingOn }
+    const items = await collection.find({ channel }).toArray()
     if (items.length) {
-      return items[0]
+      await collection.deleteOne({ channel })
+      item = {
+        ...item,
+        watchingOn: uniq([...item.watchingOn, ...items[0].watchingOn])
+      }
     }
     await collection.insertOne(item)
     return item
   })
- */
+
+export const getWatchers = () =>
+  connect(async db => {
+    const collection = db.collection(collectionName)
+    return await collection.find({}).toArray()
+  })

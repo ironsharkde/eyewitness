@@ -1,8 +1,9 @@
-import { compact, get, last } from 'lodash'
+import { compact, last } from 'lodash'
 
 import { commandPrefix, defaultParams } from '../config'
 import { getUrls } from '../../../data/urls'
 import { getMultipleSiteInfo } from '../../../data/siteInfo'
+import { addWatcher } from '../data/watch'
 
 const getData = async pageIds => {
   const urls = await getUrls()
@@ -59,11 +60,11 @@ const watcher = ({ bot, channel, data, pageIds }) => {
   }, 10 * 1000)
 }
 
-export default async function watchCommand({ parts: [cmd, ...pageIds], bot, channel }) {
+export default async function watchCommand({ parts: [cmd, ...pageIds], bot, channel, reinit }) {
   const data = await getData(pageIds)
 
   if (!data.length) {
-    bot.postMessage(
+    return bot.postMessage(
       channel,
       `
 > :zany_face: well.. something's not right with:
@@ -75,10 +76,28 @@ export default async function watchCommand({ parts: [cmd, ...pageIds], bot, chan
         ...defaultParams
       }
     )
-    return
   }
 
   const watchingOn = data.map(x => x.url)
+
+  addWatcher(channel, watchingOn).then(d => {
+    watcher({ bot, channel, data, pageIds })
+  })
+
+  if (reinit) {
+    return bot.postMessage(
+      channel,
+      `
+> :robot_face: Eyewitness Watcher restarted.
+>
+> Still watching on:
+> • ${watchingOn.join('\n> • ')}`,
+      {
+        ...defaultParams
+      }
+    )
+  }
+
   bot.postMessage(
     channel,
     `
@@ -90,6 +109,4 @@ export default async function watchCommand({ parts: [cmd, ...pageIds], bot, chan
       ...defaultParams
     }
   )
-
-  watcher({ bot, channel, data, pageIds })
 }
