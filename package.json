@@ -9,6 +9,7 @@
     "build:web": "webpack --debug",
     "start": "npm run build && npm run doc && node lib/index.js",
     "startDb": "mongod --dbpath=./data --port 27017",
+    "clearDb": "rm -rf data && mkdir -p data",
     "test": "echo \"Error: no test specified\" && exit 1",
     "doc": "rm -rf public/doc && node node_modules/apidoc/bin/apidoc -i src/ -o public/doc/",
     "watch": "npm-watch"
@@ -40,6 +41,7 @@
     "dotenv-webpack": "^1.5.5",
     "express": "^4.16.3",
     "lodash": "^4.17.5",
+    "moment": "^2.22.2",
     "mongodb": "^3.0.5",
     "normalize.css": "^8.0.0",
     "react": "^16.3.0",
