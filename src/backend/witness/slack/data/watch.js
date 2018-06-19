@@ -19,6 +19,16 @@ export const addWatcher = (channel, watchingOn) =>
     return item
   })
 
+export const removeWatcher = channel =>
+  connect(async db => {
+    const collection = db.collection(collectionName)
+    const items = await collection.find({ channel }).toArray()
+    if (items.length) {
+      await collection.deleteOne({ channel })
+    }
+    return
+  })
+
 export const getWatchers = () =>
   connect(async db => {
     const collection = db.collection(collectionName)

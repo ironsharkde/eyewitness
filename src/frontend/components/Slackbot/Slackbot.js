@@ -3,6 +3,7 @@ import { adminToken } from '../../../backend/config'
 
 import Log from './Log'
 import Control from './Control'
+import Help from './Help'
 
 const auth = {
   'x-auth': adminToken
@@ -13,21 +14,20 @@ export default class Slackbot extends React.Component {
     super(props)
     this.state = {
       log: [],
-      autoScroll: true
+      autoScroll: true,
+      showLog: false
     }
     this.fetchLogs = this.fetchLogs.bind(this)
     this.start = this.start.bind(this)
     this.stop = this.stop.bind(this)
     this.setAutoScroll = this.setAutoScroll.bind(this)
-
-    setInterval(this.fetchLogs, 3000)
-    this.fetchLogs()
+    this.toggleLog = this.toggleLog.bind(this)
   }
 
   componentDidUpdate() {
     const log = document.getElementById('slackbot-log')
 
-    if (this.state.autoScroll) {
+    if (this.state.showLog && this.state.autoScroll) {
       log.scrollTop = log.scrollHeight
     }
   }
@@ -71,6 +71,21 @@ export default class Slackbot extends React.Component {
     })
   }
 
+  toggleLog() {
+    if (this.state.showLog) {
+      clearInterval(this.logInterval)
+      this.setState({
+        showLog: false
+      })
+      return
+    }
+    this.logInterval = setInterval(this.fetchLogs, 3000)
+    this.fetchLogs()
+    this.setState({
+      showLog: true
+    })
+  }
+
   render() {
     return (
       <div className="slackbot__wrapper">
@@ -80,11 +95,20 @@ export default class Slackbot extends React.Component {
         <div className="slackbot">
           <div className="slackbot__inner">
             <Control start={this.start} stop={this.stop} />
-            <Log
-              log={this.state.log}
-              autoScroll={this.state.autoScroll}
-              setAutoScroll={this.setAutoScroll}
-            />
+            <div className="slackbot__log-wrapper">
+              <button className="slackbot__show-log-button" onClick={this.toggleLog}>
+                {!this.state.showLog && '📄 show logs'}
+                {this.state.showLog && '📄 hide logs'}
+              </button>
+              {this.state.showLog && (
+                <Log
+                  log={this.state.log}
+                  autoScroll={this.state.autoScroll}
+                  setAutoScroll={this.setAutoScroll}
+                />
+              )}
+            </div>
+            <Help />
           </div>
         </div>
       </div>

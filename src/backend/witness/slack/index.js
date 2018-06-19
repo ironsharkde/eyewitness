@@ -1,6 +1,6 @@
 import { spawn } from 'child_process'
 import { slackToken as token } from '../../config'
-import { addLog } from './data/log'
+import { addLog } from '../../witness/slack/data/log'
 
 let slackbot = null
 

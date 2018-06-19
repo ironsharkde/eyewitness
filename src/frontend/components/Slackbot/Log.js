@@ -18,7 +18,7 @@ export default function Log({ log, autoScroll, setAutoScroll }) {
       <pre className="slackbot__log" id="slackbot-log">
         {log.map(({ stamp, type, message }) => (
           <span key={stamp} className={`slackbot__log-line slackbot__log-line--${type}`}>
-            <span className="slackbot__log-stamp">{moment(stamp).format('h:mm:ss')}]</span>{' '}
+            <span className="slackbot__log-stamp">{moment(stamp).format('HH:mm:ss')}]</span>{' '}
             {message}
           </span>
         ))}
