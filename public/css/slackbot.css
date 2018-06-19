@@ -49,7 +49,7 @@
 }
 
 .slackbot__sub-headline {
-    margin: 0 0 5px;
+    margin: 10px 0 5px 0;
     font-size: 0.9rem;
 }
 
@@ -63,6 +63,14 @@
   color: #be1b1b;
   margin-right: 10px;
   border-color: #be1b1b;
+}
+
+.slackbot__log-wrapper {
+  margin: 0 0 20px;
+}
+
+.slackbot__show-log-button {
+  padding: 4px 7px;
 }
 
 .slackbot__autoscroll {
@@ -79,6 +87,7 @@
   padding: 5px;
   overflow: scroll;
   resize: vertical;
+  width: calc(100% - 10px);
   height: 200px;
   font-size: 0.9rem;
   font-weight: 300;
@@ -101,4 +110,17 @@
 .slackbot__log-stamp {
   font-size: 0.8rem;
   opacity: .5;
+}
+
+.slackbot__help-item {
+  font-size: 0.85rem;
+  line-height: 1.33;
+  margin: 0 0 10px;
+  color: rgba(31, 38, 44, 0.5);
+}
+
+.slackbot__help-code {
+  background: rgba(31, 38, 44, 0.05);
+  color: rgba(31, 38, 44, 1);
+  padding: 2px 3px;
 }

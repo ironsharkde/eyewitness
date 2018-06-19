@@ -9,6 +9,7 @@ import urlsCommand from './commands/urls'
 import statusCommand from './commands/status'
 import detailsCommand from './commands/details'
 import watchCommand from './commands/watch'
+import unwatchCommand from './commands/unwatch'
 
 import { getWatchers } from './data/watch'
 import { getUrls } from '../../data/urls'
@@ -25,7 +26,8 @@ const commands = {
   urls: 'urls',
   status: 'status',
   details: 'details',
-  watch: 'watch'
+  watch: 'watch',
+  unwatch: 'unwatch'
 }
 
 const handlers = {
@@ -33,7 +35,8 @@ const handlers = {
   [commands.urls]: urlsCommand,
   [commands.status]: statusCommand,
   [commands.details]: detailsCommand,
-  [commands.watch]: watchCommand
+  [commands.watch]: watchCommand,
+  [commands.unwatch]: unwatchCommand
 }
 
 const joined = (data, bot) => {
@@ -94,16 +97,41 @@ function startSlackBot() {
   })
 
   bot.on('start', async () => {
-    getWatchers().then(watchers =>
+    getWatchers().then(async watchers => {
       watchers.forEach(async watcher => {
         const urls = await getUrls()
         const channel = watcher.channel
         const pageIds = watcher.watchingOn.map(url => findIndex(urls, x => x === url))
         const parts = ['watch', ...pageIds.map(x => `${x}`)]
         watchCommand({ parts, bot, channel, reinit: true })
-        console.log(`${watchers.length} Watcher${watchers.length > 1 ? 's' : ''} started`)
       })
-    )
+
+      const channelIds = watchers.map(watcher => watcher.channel)
+
+      const activeGroups = await bot
+        .getGroups()
+        .then(groups => groups.groups)
+        .catch(e => {
+          throw e
+        })
+        .then(groups => (groups ? groups : []))
+      const activeChannels = await bot
+        .getChannels()
+        .then(channels => channels.channels)
+        .catch(e => {
+          throw e
+        })
+        .then(channels => (channels ? channels : []))
+
+      const chats = [].concat(activeGroups, activeChannels)
+      const activeChats = chats.filter(chat => channelIds.indexOf(chat.id) !== -1)
+
+      console.log(
+        `${watchers.length} Watcher${
+          watchers.length > 1 ? 's' : ''
+        } started in these channels: ${activeChats.map(x => x.name).join(', ')}`
+      )
+    })
 
     bot.on('message', data => {
       // all ingoing events https://api.slack.com/rtm
