@@ -134,8 +134,6 @@ function startSlackBot() {
     })
 
     bot.on('message', data => {
-      // all ingoing events https://api.slack.com/rtm
-      // console.log('new DATA: ------> ', data)
       reactions[data.type] && reactions[data.type](data, bot)
     })
   })
