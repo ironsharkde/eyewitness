@@ -67,3 +67,11 @@ Client tokens can be configured via the frontend ("Add Client")
 Add the configured `token` as query param to the API request to get public access.
 
 Public services should not use the `"x-auth"` header method to gain access. They should use the `token` query param method.
+
+# Slackbot
+
+Eyewitness also ships with a Slackbot.
+
+Just take the token from the Bot created in [Slack](https://stuntcrew.slack.com/apps/manage/custom-integrations) and add it to the env variable `SLACK_TOKEN`.
+
+See all Slackbot commands by typing `ey, help`.
