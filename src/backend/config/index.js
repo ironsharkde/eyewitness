@@ -9,3 +9,6 @@ export const fromOffset = 8 * 60 * 60 * 1000 // 8h
 export const adminToken = process.env.API_TOKEN || '___PLEASE_USE_THE_ENV-FILE___'
 // frontend access ips
 export const accessIps = 'ACCESS_IPS' in process.env ? process.env.ACCESS_IPS.split(',') : []
+
+// slack token
+export const slackToken = process.env.SLACK_TOKEN || false

@@ -14,6 +14,9 @@ import {
 } from './data/siteInfo'
 import { getUrls, addUrl, deleteUrl } from './data/urls'
 import { getClients, addClient, deleteClient } from './data/clients'
+import { getLogs as getSlackLogs } from './witness/slack/data/log'
+
+import { startSlackbot, stopSlackbot } from './witness/slack'
 
 const port = process.env.JPR_PORT || 4321
 const app = express()
@@ -63,6 +66,21 @@ app
     console.log(`access denied for ${requestIps.join(',')}`)
 
     res.status('403').send(prepareResponse(req.query, 'access forbidden'))
+  })
+
+  .get('/api/v1/slackbot/start', (req, res) => {
+    startSlackbot()
+    res.status('200').send(prepareResponse(req.query, { message: 'Start Slackbot requested' }))
+  })
+
+  .get('/api/v1/slackbot/stop', (req, res) => {
+    stopSlackbot()
+    res.status('200').send(prepareResponse(req.query, { message: 'Stop Slackbot requested' }))
+  })
+
+  .get('/api/v1/slackbot/logs', async (req, res) => {
+    const logs = await getSlackLogs()
+    res.status('200').send(prepareResponse(req.query, logs))
   })
 
   /**
@@ -326,7 +344,7 @@ app
   .use('/', express.static('public'))
 
   .listen(port, function() {
-    console.log(`👁  serve @ localhost:${port}`)
+    console.log(`👁 serve @ localhost:${port}`)
   })
 
 // fetch site info every [config.density] ms
@@ -343,3 +361,6 @@ async function updateSiteInfo() {
   setTimeout(updateSiteInfo, config.density)
 }
 updateSiteInfo()
+
+// START SLACKBOT
+startSlackbot()

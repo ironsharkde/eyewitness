@@ -1,0 +1,126 @@
+.slackbot {
+  margin: 0 auto 10px;
+  max-width: 900px;
+  padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+  .slackbot {
+    padding: 0 20px;
+  }
+}
+
+.slackbot__wrapper {
+  margin-bottom: 40px;
+}
+
+.slackbot__headline {
+  margin: 0 auto 10px;
+  max-width: 900px;
+  padding: 0 10px;
+  font-size: 1.1rem;
+}
+
+@media (min-width: 480px) {
+  .slackbot__headline {
+    padding: 0 20px;
+  }
+}
+
+.slackbot__icon {
+  width: 22px;
+  vertical-align: bottom;
+  margin-right: 3px;
+}
+
+.slackbot__inner {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(31, 38, 44, 0.1);
+  padding: 10px;
+}
+
+.slackbot__section {
+  margin-bottom: 10px;
+}
+
+.slackbot__section:last-child {
+  margin-bottom: 0;
+}
+
+.slackbot__sub-headline {
+    margin: 10px 0 5px 0;
+    font-size: 0.9rem;
+}
+
+.slackbot__start-button {
+  color: #37a214;
+  margin-right: 10px;
+  border-color: #37a214;
+}
+
+.slackbot__stop-button {
+  color: #be1b1b;
+  margin-right: 10px;
+  border-color: #be1b1b;
+}
+
+.slackbot__log-wrapper {
+  margin: 0 0 20px;
+}
+
+.slackbot__show-log-button {
+  padding: 4px 7px;
+}
+
+.slackbot__autoscroll {
+  margin: -18px 0 5px 0;
+  display: block;
+  float: right;
+  font-size: .7rem;
+}
+
+.slackbot__log {
+  background: rgba(31, 38, 44, 0.95);
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  padding: 5px;
+  overflow: scroll;
+  resize: vertical;
+  width: calc(100% - 10px);
+  height: 200px;
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-family: monospace;
+}
+
+.slackbot__log-line {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.slackbot__log-line--error {
+  color: #ff7777;
+}
+
+.slackbot__log-line--warn {
+  color: #fdfa45;
+}
+
+.slackbot__log-stamp {
+  font-size: 0.8rem;
+  opacity: .5;
+}
+
+.slackbot__help-item {
+  font-size: 0.85rem;
+  line-height: 1.33;
+  margin: 0 0 10px;
+  color: rgba(31, 38, 44, 0.5);
+}
+
+.slackbot__help-code {
+  background: rgba(31, 38, 44, 0.05);
+  color: rgba(31, 38, 44, 1);
+  padding: 2px 3px;
+}
